@@ -3,7 +3,6 @@
 This project is using Apache Jena library to generate a spatial index file from a TDB2 dataset.
 Generating the spatial index file before starting a Fuseki instance with GeoSPARQL support can save some precious time when starting the Fuseki instance.
 
-If you want to play with Fuseki with GeoSPARQL support, you may be interested in: https://github.com/zazuko/fuseki-geosparql.
 
 ## Build
 
@@ -45,7 +44,7 @@ If you want to run it quickly on a dataset on your machine, go in the dataset di
 ```sh
 docker run --rm \
   -v$(pwd):/databases/ds \
-  ghcr.io/zazuko/spatial-indexer:latest \
+  ghcr.io/kurrawong/spatial-indexer:latest \
   --srs http://www.opengis.net/def/crs/OGC/1.3/CRS84
 ```
 
@@ -67,7 +66,7 @@ FROM ...
 # make sure you have a Java runtime somewhere in the image
 
 # ...
-COPY --from=ghcr.io/zazuko/spatial-indexer:latest /app/spatialindexer.jar .
+COPY --from=ghcr.io/kurrawong/spatial-indexer:latest /app/spatialindexer.jar .
 # ...
 
 ```
@@ -75,8 +74,8 @@ COPY --from=ghcr.io/zazuko/spatial-indexer:latest /app/spatialindexer.jar .
 Or if you want to directly fetch the `jar` file locally, you can use this command:
 
 ```sh
-docker pull ghcr.io/zazuko/spatial-indexer:latest
-CONTAINER_ID=$(docker create ghcr.io/zazuko/spatial-indexer:latest)
+docker pull ghcr.io/kurrawong/spatial-indexer:latest
+CONTAINER_ID=$(docker create ghcr.io/kurrawong/spatial-indexer:latest)
 docker cp "${CONTAINER_ID}:/app/spatialindexer.jar" .
 docker stop "${CONTAINER_ID}"
 docker rm "${CONTAINER_ID}"
